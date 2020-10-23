@@ -133,7 +133,6 @@
     integer commandChannel = 77;    // Command channel in chat
     integer commandH = 0;       // Handle for command channel
     key whoDat = NULL_KEY;      // Avatar who sent command
-    integer restrictAccess = 2; // Access restriction: 0 none, 1 group, 2 owner
     integer echo = TRUE;        // Echo chat and script commands ?
 
     integer grabbed = FALSE;    // Toggle for take/release controls on touch
@@ -224,14 +223,6 @@
         }
     }
 
-    //  checkAccess  --  Check if user has permission to send commands
-
-    integer checkAccess(key id) {
-        return (restrictAccess == 0) ||
-               ((restrictAccess == 1) && llSameGroup(id)) ||
-               (id == owner);
-    }
-
     //  abbrP  --  Test if string matches abbreviation
 
     integer abbrP(string str, string abbr) {
@@ -295,13 +286,6 @@
     //  processCommand  --  Process a command
 
     integer processCommand(key id, string message, integer fromScript) {
-
-        if (!checkAccess(id)) {
-            llRegionSayTo(id, PUBLIC_CHANNEL,
-                "You do not have permission to control this object.");
-            return FALSE;
-        }
-
         whoDat = id;            // Direct chat output to sender of command
 
         /*  If echo is enabled, echo command to sender unless
@@ -498,7 +482,7 @@
                     arc = (float) llList2String(args, 2);
                 }
             }
-            llSensor("", NULL_KEY, ACTIVE | SCRIPTED | AGENT | PASSIVE, range, arc * DEG_TO_RAD);
+            llSensor("", NULL_KEY, ACTIVE | AGENT | PASSIVE, range, arc * DEG_TO_RAD);
 
         //  Sound [ play/loop/stop Clip name ]  Play or loop sound clip
 
@@ -607,7 +591,7 @@
             fixAnim = fixCtrl = FALSE;
             whoDat = owner = llGetOwner();
             if (commandH == 0) {
-                commandH = llListen(commandChannel, "", NULL_KEY, "");
+                commandH = llListen(commandChannel, "", whoDat, "");
                 tawk("Listening on /" + (string) commandChannel);
             }
         }
@@ -639,7 +623,8 @@
             if (attachedAgent != NULL_KEY) {
                 whoDat = attachedAgent;
                 if (commandH == 0) {
-                    commandH = llListen(commandChannel, "", NULL_KEY, "");
+                    //  Listen only for messages from wearer
+                    commandH = llListen(commandChannel, "", whoDat, "");
                     tawk("Listening on /" + (string) commandChannel);
                 }
             } else {
