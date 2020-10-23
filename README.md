@@ -13,7 +13,7 @@ channel 77 by the wearer and responds in local chat to the wearer.
 
 ![Fourmilab Utility Amulet](marketplace/images/amulet_2.png)
 
-To use the Cloud Halo, simply add it to your outfit.  Chat commands
+To use the Utility Amulet, simply add it to your outfit.  Chat commands
 provide access to the following services.
 
 * Play animations from the object's inventory or standard animations
@@ -25,6 +25,7 @@ provide access to the following services.
 * Monitor and dump region messages on any channel or channels
 * Apply, cancel, or list animation overrides
 * Show parcel information: area, owner, land capacity and usage, and settings
+* Show region information: location, size, permissions, owner, capacity, and performance
 * Perform sensor scan, report objects in range, and optionally teleport to them
 * Play or loop sound clips from object's inventory or stop sound clip
 
