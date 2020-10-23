@@ -1,0 +1,35 @@
+Fourmilab Utility Amulet is a wearable accessory which provides a variety of services useful to developers and explorers of the Second Life virtual world.  The amulet has the form of a golden bracelet worn by default on the left hand (you can change the attach point and position on the body if you wish—it is not “rigged” to the avatar skeleton).  It accepts commands submitted on local chat channel 77 by the wearer and responds in local chat to the wearer.
+
+Chat commands provide access to a variety of queries, information, and services provided by Linden Scripting Language.
+
+    •  Play animations from the object's inventory or standard animations
+    •  List avatar attachments and their attach points
+    •  List avatar information and settings
+    •  Use the Fourmilab Geometric Calculator for vector, rotation, and numerical calculations
+    •  Report arrivals and departures from your property, teleport to new arrivals or visitors
+    •  Query Second Life grid status: users in world and L$ exchange rate
+    •  Monitor and dump region messages on any channel or channels
+    •  Apply, cancel, or list animation overrides
+    •  Show parcel information: area, owner, land capacity and usage, and settings
+    •  Show region information: location, size, permissions, owner, capacity, and performance
+    •  Perform sensor scan, report objects in range, and optionally teleport to them
+    •  Play or loop sound clips from object's inventory or stop sound clip
+
+Land Impact and Permissions
+
+Fourmilab Utility Amulet is a wearable accessory for your avatar.  As such, it has no land impact, and you do not need land to attach it from your inventory and use it.  If, for some reason, you should rez it on land rather than wearing it, it has a land impact of 1.
+
+Development Kit
+
+Fourmilab Utility Amulet is delivered including a development kit containing all of the object components, scripts, sound clips, animations, and documents it uses.  All items including scripts, have “full permissions” (copy, modify, and transfer), so that you can use them as the basis for your own development projects and/or share them with other users in Second Life.  The amulet only accepts chat commands from its owner/wearer.
+
+Source code for this project is maintained on and available from the GitHub repository:
+    https://github.com/Fourmilab/utility_amulet
+
+License
+----------
+
+This product (software, documents, images, and original models) is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+    http://creativecommons.org/licenses/by-sa/4.0/
+    https://creativecommons.org/licenses/by-sa/4.0/legalcode
+You are free to copy and redistribute this material in any medium or format, and to remix, transform, and build upon the material for any purpose, including commercially.  You must give credit, provide a link to the license, and indicate if changes were made.  If you remix, transform, or build upon this material, you must distribute your contributions under the same license as the original.

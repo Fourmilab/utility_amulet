@@ -1,0 +1,9 @@
+Wearable amulet provides numerous services
+
+Query avatar, attachment, parcel, region, and grid status, info, and settings
+
+Play, loop, and stop sound clips
+
+Play and stop animations, set and clear animation overrides
+
+Report avatar arrivals/departures from your property, teleport to them
