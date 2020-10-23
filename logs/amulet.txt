@@ -1,0 +1,155 @@
+
+                                Fourmilab Utility Amulet
+
+                                     Development Log
+
+2020 October 17
+
+Well, the inevitable happened, and this thing, which started out as
+about ten lines of code, was bumping up against the script memory
+limit.  I split out the following commands, which use a large amount
+of static script memory, to a new "Amulet Auxiliary" script:
+    Anim
+    Attachments
+    Avatar
+    Help
+    Parcel
+    Region
+This roughly equalises script memory usage between the main script (58%)
+and auxiliary script (54%).  If we need to free up more memory in the
+main script, the Override command is the next to go.
+
+Added code so the Boot command resets all of the scripts, not just the
+main script.  This is particularly handy when the Greet module gets
+clogged up with lots of avatar names and keys.
+
+Made a number of changes to make the Greet module "play nice" with the
+Amulet environment.  As with the Calculator, I added the ability to
+disable Greet's built-in listen for chat commands if commandChannel is
+set to zero.  In that case, commands are accepted via LM_AU_COMMAND in
+the same manner as other auxiliary commands.  I renamed the module from
+"Greet" to "Welcome" to avoid a name collision with the Amulet "Grid"
+command.  Commands for the Welcome module may be submitted by prefixing
+them with "Welcome", for example:
+    Welcome present
+to list avatars on the parcel.  This automatically makes the main
+Amulet Status command show the status of the Welcome module.
+
+Disabled logging in the Welcome module with lslconf-compatible IF LOG
+comments.
+
+Added Calculator status to overall status shown by the main Status
+command.
+
+Added code to report invalid inventory names for animations and sound
+clips to avoid ugly pop-up script error messages.
+
+2020 October 18
+
+Added some of our converted CMU motion capture animations as examples
+for playing animations:
+    Baseball pitch
+    Baseball swing
+    Cartwheel
+    Golf swing
+
+2020 October 21
+
+Added display of position in region, compass bearing, and terrain
+(height of ground and water at that location) to the "Avatar" command
+output.
+
+Integrated the ef() function family into Amulet Auxilary and modified
+output editing code to use it where appropriate to make output more
+readable.
+
+Added an optional arc argument to the Sensor command which specifies
+the maximum angle, in degrees, at which objects will be detected from
+the avatar's forward-facing direction.  Valid arc specifications should
+be greater than 0 and less or equal to 180.
+
+Added display of the nearest compass cardinal point (8 points: N, NE,
+E, SE, etc.) to the Bearing item in the Avatar command.
+
+2020 October 22
+
+Moving the Welcome module to accepting its commands via LM_AU_COMMAND
+had the side effect of generating an unknown command warning for any
+command which it didn't process.  I added code so that if
+commandChannel is set to zero (enabling LM_AU_COMMAND), commands which
+are not prefixed by the module name ("Welcome") are silently ignored.
+
+This, in turn, required code in the Status command in the main script
+to explicitly request status from the Welcome module instead of letting
+it fall out of auxiliary command processing as before.
+
+Added "Edge of world" status to the Region command output, just after
+the Grid location.  The result indicates which of the four principal
+cardinal points (North, East, etc.) from the region where the avatar is
+located are off the edge of the world (has no simulator).  If all
+directions are in the world, "None" is displayed.
+
+Added logic to the handler for the Override command in the main script
+(the bulk of which is in the run_time_permissions() event handler,
+after permissions have been granted) to test the specified animation
+name for presence in inventory, as the Animation command does.  If you
+wish to override with an internal animation, preceding its name with an
+asterisk will bypass the check of inventory (but if the animation name
+doesn't exist, you'll get the pop-up script error message for no such
+animation).
+
+Created local development Git repository in:
+    ~/w/SecondLife/Amulet/git
+with:
+    git init
+
+Logged on to github.com.
+
+Created a new repository:
+    utility_amulet
+with access URLs:
+    HTTPS: https://github.com/Fourmilab/utility_amulet.git
+    SSH:   git@github.com:Fourmilab/utility_amulet.git
+
+Linked the local repository to the GitHub archive:
+    git remote add origin git@github.com:Fourmilab/utility_amulet.git
+
+Committed the *.md files in the repository root and the
+marketplace/images files to which they link.
+
+Confirmed that my local "git sync" command works with the remote
+repository.
+
+The documents in the repository root now work properly.
+
+Added the new "Bouncy walk" animation (ported from the CMU motion
+capture archive item 132_29) to the inventory as a sample for the
+Override command.  It is looped, so it works properly with the
+"Walking" animation state.
+
+2020 October 23
+
+Added Marketplace listing master files to the Git repository.
+
+Added the Amulet and Calculator User Guide notecards to the Git
+repository.
+
+Added LSL scripts to the Git repository.
+
+The amulet was listening on commandChannel for chat commands from any
+avatar, and thus if more than one avatar was wearing an amulet within
+chat range the others would report an invalid access attempt.  Since we
+start to listen only when attached, it makes sense to listen only to
+chat from the avatar to which we're attached.  I added a filter on the
+avatar's key in the llListen() calls (one on attachment, one in
+state_entry() to handle reset of the script while attached) to restrict
+the listen to the avatar wearing the amulet.
+
+The Sensor command was failing to detect avatars within range.  It
+appears that including the SCRIPTED modifier excludes avatars (or, at
+least those which don't have an active script at the moment).  Removing
+the modifier, as in the example in the Wiki page for llSensor(),
+appears to correct the problem.  It doesn't seem to exclude anything we
+detected previously.
+
+Released version 1.0 to the Marketplace.
