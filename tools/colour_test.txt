@@ -1,0 +1,43 @@
+
+#   Inputs and outputs to test Colour queries
+
+#   Outputs marked ## will differ from the reference output
+#   due to round-off of integer values and inability to
+#   represent all colours by blackbody emission.
+
+/77 co css "Salmon"
+
+RGB <0.98039, 0.50196, 0.44706>  #FA8072  RGB(250, 128, 114)  RGB(98%, 50%, 45%)
+HSL <0.01716, 0.93151, 0.71373>  HSL(6°, 93%, 71%)
+HSV <0.01716, 0.544, 0.98039>  HSV(6°, 54%, 98%)
+CMY <0.01961, 0.49804, 0.55294>  CMYK <0, 0.488, 0.544, 0.01961>
+YIQ <0.63863, 0.30276, 0.08395>
+YUV <0.63863, -0.09443, 0.2997>
+TEMP 3094 °K
+CSS Salmon <0.98039, 0.50196, 0.44706>
+
+/77 co rgb <0.98039, 0.50196, 0.44706>
+
+/77 co rgb #FA8072
+
+/77 co RGB (250, 128, 114)
+
+/77 co rgb <98%, 50%, 45%>      ##
+
+/77 co hsl <0.01716, 0.93151, 0.71373>
+
+/77 co hsl <6°, 93%, 71%>       ##
+
+/77 co hsv <0.01716, 0.544, 0.98039>
+
+/77 co hsv <6°, 54%, 98%>       ##
+
+/77 co cmy <0.01961, 0.49804, 0.55294>
+
+/77 co cmyk <0, 0.488, 0.544, 0.01961>
+
+/77 co yiq <0.63863, 0.30276, 0.08395>
+
+/77 co yuv <0.63863, -0.09443, 0.2997>
+
+/77 co temp 3094                ##
