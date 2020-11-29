@@ -14,6 +14,7 @@ Chat commands provide access to a variety of queries, information, and services 
     •  Show region information: location, size, permissions, owner, capacity, and performance
     •  Perform sensor scan, report objects in range, and optionally teleport to them
     •  Play or loop sound clips from object's inventory or stop sound clip
+    •  Query and interconvert colours among a variety of colour systems, including CSS named colours
 
 Land Impact and Permissions
 

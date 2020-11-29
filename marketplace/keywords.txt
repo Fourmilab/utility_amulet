@@ -1,1 +1,1 @@
-amulet, wearable, developer, builder, query, region, parcel, grid, avatar, attachments, animation, override, sound, sensor, teleport
+amulet, wearable, developer, builder, query, region, parcel, grid, avatar, attachments, animation, override, sound, sensor, teleport, color
