@@ -39,6 +39,9 @@
             Clear
                 Send blank space to chat.
 
+            Colour query
+                Look up a colour in the colour database.
+
             Fix controls
                 Request permission to take control of navigation
                 keys and, if granted, release them again after
@@ -129,6 +132,7 @@
 
     */
 
+    string version = "1.1";     // Version number
     key owner;                  // Owner / wearer key
     integer commandChannel = 77;    // Command channel in chat
     integer commandH = 0;       // Handle for command channel
@@ -523,7 +527,7 @@
         } else if (abbrP(command, "st")) {
             integer mFree = llGetFreeMemory();
             integer mUsed = llGetUsedMemory();
-            tawk(llGetScriptName() + " status:\n" +
+            tawk(llGetScriptName() + " version " + version + " status:\n" +
                  "    Agent Info: " + (string) llGetAgentInfo(whoDat) + "\n" +
                  "    Permissions: " + (string) llGetPermissions() + "\n" +
                  "    Animation: " + llGetAnimation(whoDat) + "\n" +
@@ -557,6 +561,7 @@
         //  Anim                    Play/stop animation (internal or from inventory)
         //  Attachments             List attachments to avatar
         //  Avatar                  List avatar information
+        //  Colour                  Convert colour representations
         //  Help                    Print command summary
         //  Parcel                  Parcel information
         //  Region                  Region information
@@ -565,6 +570,7 @@
         } else if (abbrP(command, "an") ||
                    abbrP(command, "at") ||
                    abbrP(command, "av") ||
+                   abbrP(command, "co") ||
                    abbrP(command, "he") ||
                    abbrP(command, "pa") ||
                    abbrP(command, "re") ||
