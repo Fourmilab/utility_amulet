@@ -14,7 +14,7 @@ are as follows.
 
 Chat Commands
 
-All chat commands and parameters, except those specifying names from
+Most chat commands and parameters, except those specifying names from
 the inventory, may be abbreviated to as few as two characters and are
 insensitive to upper and lower case.
 
@@ -58,6 +58,79 @@ insensitive to upper and lower case.
         Evaluate an expression with the Fourmilab Geometric Calculator.
         For complete documentation of the Calculator, enter the command
         “Calc help”.
+
+    Colour query
+        Query the colour database.  You can look up colours with the
+        following specifications.  Wherever a value between 0 and 1 is
+        required, you can give it as a percentage, for example 15%
+        instead of 0.15.  Colour system names may be abbreviated to
+        two letters except where more are required to avoid ambiguity
+        (for example, between HSL and HSV).
+            RGB <r, g, b>       Red, green, and blue values between
+                                0 and 1.
+            RGB (r, g, b)       Red, green, and blue values between 0
+                                and 255.
+            RGB #RRGGBB         Red, green, and blue values between 0
+                                and 255, specified as two hexadecimal
+                                digits (00 to FF) as in CSS and HTML.
+            CMY <c, m, y>       Cyan, magenta, and yellow subtractive
+                                colour values between 0 and 1.
+            CMYK <c, m, y, k>   Cyan, magenta, yellow, and black values
+                                between 0 and 1, as used in four colour
+                                process printing.
+            HSL <h, s, l>       Hue, saturation, and lightness values
+                                between 0 and 1.  You can also specify
+                                the hue as a colour wheel value in
+                                degrees by appending a degree sign
+                                (°) or “d”: hue values of 0.75, 270°,
+                                and 270d are equivalent.
+            HSV <h, s, v>       Hue, saturation, and value between 0
+                                and 1.  Hue may be specified in degrees
+                                as for HSL.
+            TEMP degK           Colour of a black body emitting at a
+                                temperature of degK degrees Kelvin (in
+                                the range from 1000 to 40000 °K).
+            YIQ <y, i, q>       Luminance (Y) and chroma (In-phase and
+                                Quadrature) as used in NTSC television
+                                broadcasting.  Y is a value between 0
+                                and 1, while I is in the range ±0.5957
+                                and Q is in the range ±0.5226.  The Y
+                                value is a good approximation of the
+                                appearance of a colour on a monochrome
+                                display.
+            YUV <y, u, v>       Luminance (Y) and chroma (U: blue
+                                projection, V: red projection) as used
+                                in PAL television broadcasting.  Y is
+                                between 0 and 1, U ranges from ±0.436
+                                and V from ±0.615.
+            CSS Name            The named colour from the Cascading
+                                Style Sheets (CSS).  If the name is
+                                surrounded by quotes, for example
+                                "Blue", then the match is exact and the
+                                colour must be specified exactly as in
+                                the standard, including upper and
+                                lower case letters.  If unquoted, all
+                                colours which contain the name,
+                                ignoring letter case, will be returned.
+
+        The colour (or colours, for a CSS query which matches more than
+        one) will be reported in all of the colour systems, for example:
+            RGB <0.82353, 0.41176, 0.11765>  #D2691E  RGB(210, 105, 30)  RGB(82%, 41%, 12%)
+            HSL <0.06944, 0.75, 0.47059>  HSL(25°, 75%, 47%)
+            HSV <0.06944, 0.85714, 0.82353>  HSV(25°, 86%, 82%)
+            CMY <0.17647, 0.58824, 0.88235>  CMYK <0, 0.5, 0.85714, 0.17647>
+            YIQ <0.50115, 0.34002, -0.00459>
+            YUV <0.50115, -0.18901, 0.28272>
+            TEMP 2177 °K
+            CSS Chocolate <0.82353, 0.41176, 0.11765>
+        The colour temperature (TEMP) is that in which the ratio of red
+        to blue is closest to the specified colour: most colours cannot
+        be closely approximated by black body emission.  A CSS colour
+        name will be reported only if it is a close match to the
+        specified colour.  For a grey scale value which approximates
+        the appearance of a colour on a monochrome display, use the Y
+        value from the YIQ or YUV representation for all components: in
+        the above, <0.50115, 0.50115, 0.50115>.
 
     Clear
         Send white space to the local chat window to set off subsequent
