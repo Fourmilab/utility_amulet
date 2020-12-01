@@ -320,6 +320,7 @@
         if (abbrP(command, "bo")) {
             llResetOtherScript("Amulet Auxiliary");
             llResetOtherScript("Calculator");
+            llResetOtherScript("Colour");
             llResetOtherScript("Welcome");
             llResetScript();
 

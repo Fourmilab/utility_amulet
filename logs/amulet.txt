@@ -172,4 +172,8 @@ notecard.
 Added a new tools/colour_test.txt file to the Git repository with test
 inputs and outputs for exercising all cases of the Colour command.
 
+2020 November 30
+
+The Boot command was not resetting the Colour script; fixed.
+
 Released version 1.1 to the Marketplace.
